@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from src.data_preprocessing import preprocess_data  # assuming this exists
+from src.data_preprocessing import preprocess_and_save
 
 def test_preprocessing_output_shape():
     """Check preprocessing returns expected columns."""

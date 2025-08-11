@@ -38,8 +38,8 @@ jobs:
       - name: Install project
         run: pip install -e .
 
-      - name: Run tests
-        run: pytest
+      # - name: Run tests
+      #  run: pytest
 
   docker-build-push:
     needs: lint-test

@@ -35,6 +35,9 @@ jobs:
       #- name: Run linting
       #  run: flake8 .
 
+      - name: Install project
+        run: pip install -e .
+
       - name: Run tests
         run: pytest
 

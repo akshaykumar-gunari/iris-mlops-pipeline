@@ -73,5 +73,5 @@ jobs:
           chmod +x deploy.sh
           ./deploy.sh
         env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKER_TOKEN }}

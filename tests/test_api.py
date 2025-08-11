@@ -1,15 +1,22 @@
-from fastapi.testclient import TestClient
-from app.api import app
+import pytest
+from app.api import app  # Flask app
 
-client = TestClient(app)
+@pytest.fixture
+def client():
+    app.testing = True
+    return app.test_client()
 
-def test_predict_endpoint():
-    payload = {"features": [5.1, 3.5, 1.4, 0.2]}
-    response = client.post("/predict", json=payload)
-
+def test_predict_endpoint(client):
+    """Send a sample request to /predict and check response."""
+    sample = {
+        "sepal_length": 5.1,
+        "sepal_width": 3.5,
+        "petal_length": 1.4,
+        "petal_width": 0.2
+    }
+    response = client.post("/predict", json=sample)
     assert response.status_code == 200
-    json_data = response.json()
-
+    json_data = response.get_json()
     assert "prediction" in json_data
-    assert isinstance(json_data["prediction"], list)
+    assert json_data["prediction"] in [0, 1, 2]
 

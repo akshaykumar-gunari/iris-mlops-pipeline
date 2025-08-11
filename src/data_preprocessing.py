@@ -10,6 +10,13 @@ def preprocess_and_save(data_path='data/iris.csv'):
     df.to_csv(data_path, index=False)
     print(f"Iris dataset saved to {data_path}")
 
+def preprocess_data(df):
+    """Minimal preprocessing: remove NaNs and split X, y."""
+    df = df.dropna()
+    X = df.drop(columns=["species"])
+    y = df["species"]
+    return X, y
+
 if __name__ == "__main__":
     preprocess_and_save()
 

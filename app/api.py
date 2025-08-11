@@ -24,14 +24,10 @@ FEATURE_COLUMNS = [
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # data = request.json
-        data = {
-        "sepal length (cm)": 100,
-        "sepal width (cm)": 60,
-        "petal length (cm)": 70,
-        "petal width (cm)": 85
-        }
         data = request.json
+
+        if not data:
+            return {"error": "No input"}, 400
 
         # Validate input contains all required features
         if not all(feature in data for feature in FEATURE_COLUMNS):
